@@ -4,23 +4,23 @@ var answerNumber = 0;
 var score = 0; 
 var highScore = 50; 
 var finalAnswerCheck = 0 
-var checkTimes = 1 // 
-var viewHighScoresBtnEl = document.getElementById('view-high-scores'); 
+var checkTimes = 1 
+var viewHighScoresBtnEl = document.getElementById('view-high-scores');
 var startQuizBtnEl = document.getElementById('start-quiz');
-var answer1BtnEl = document.getElementById('answer1');
+var answer1BtnEl = document.getElementById('answer1'); 
 var answer2BtnEl = document.getElementById('answer2'); 
 var answer3BtnEl = document.getElementById('answer3'); 
 var answer4BtnEl = document.getElementById('answer4'); 
 var submitScoreEl = document.getElementById('submitScore'); 
 var questionsEl = document.getElementById('questions'); 
 var mainDivEl = document.getElementById('mainDiv'); 
-var htmlTimeLeft = document.getElementById('timeLeft');
+var htmlTimeLeft = document.getElementById('timeLeft'); 
 var answerCorrectWrong = document.getElementById('answerCorrectWrong'); 
 var questionDisplayEl = document.createElement("questionDisplay"); 
-var finalScoreDisplayEl = document.createElement("finalScoreDisplay");
+var finalScoreDisplayEl = document.createElement("finalScoreDisplay"); 
 var enterInitialsEl = document.createElement("enterInitials"); 
-var enterInitialsTextAreaEl = document.createElement("enterInitialsTextArea"); 
-var button1234 = document.createElement("button");
+var enterInitialsTextAreaEl = document.createElement("enterInitialsTextArea");
+var button1234 = document.createElement("button"); 
 var timeLeft = 60; 
 
 
@@ -37,10 +37,8 @@ var questionsObject = {
     correct: { 
         0 : "Commonly used datatypes DO NOT include?",
         1 : "The condition statement if/else is enclosed with the following:",
-        2 : "Arrays can be used to store the following", 
-        3 : "A very useful tool to debug arrays is:",
-        4 : "Strings must be enclosed with:"
-       
+        2 : "Arrays can be used to store the following",  
+        3 : "A very useful tool to debug arrays is:", 
     }
 };
 
@@ -110,7 +108,7 @@ submitScoreEl.addEventListener("click", function() {
     value = [quizUserDetails,highScore] 
 
 
-    
+   
     if (!localStorage.length) {
         localStorage.setItem("test","test");
     }
@@ -121,10 +119,10 @@ submitScoreEl.addEventListener("click", function() {
         var checkUser = "";
         var checkUserValue = [];
 
-
+       
         quizUserDetails = quizLocalStorage + enterInitialsTextArea.value;
 
-      
+       
         checkUser = localStorage.getItem(quizUserDetails);
        
    
@@ -134,6 +132,7 @@ submitScoreEl.addEventListener("click", function() {
             break;
         } else if (checkUser != null){
             checkUserValue = checkUser.split(","); 
+           
         
         }  
 
@@ -144,7 +143,7 @@ submitScoreEl.addEventListener("click", function() {
 
        
         
-        localStorage.setItem(quizUserDetails, value); 
+        localStorage.setItem(quizUserDetails, value);
         window.alert(highScore + " " + "is the latest entry for user initial " + enterInitialsTextArea.value + ". Entry will not be added.")
         break; 
         } else if (enterInitialsTextArea.value == "") {
@@ -161,7 +160,7 @@ submitScoreEl.addEventListener("click", function() {
             window.alert("Your previous code of " + checkUserValue[1] + " was higher. Entry will not be added.");
             break; 
 
-        } else { // New entry all together
+        } else { 
             localStorage.setItem(quizUserDetails, value); 
             window.alert("Your score of " + highScore + " has been submitted!")
             break;
@@ -204,18 +203,16 @@ submitScoreEl.addEventListener("mouseover", function() {
 
 startQuizBtnEl.addEventListener("click", function() {
 
-
+//debugger;
     startQuizBtnEl.style.display = 'none';
     questionDisplay.style.display='none';
     finalScoreDisplay.style.display = 'none';
     enterInitials.style.display='none';
-    score = 0; 
+    score = 0; // Score is 0 again.
     timeLeft=60;
     htmlTimeLeft.textContent = timeLeft; 
     finalAnswerCheck = 0; 
-    checkTimes = 1;
-
-    
+    checkTimes = 1; 
     
     var timeInterval = setInterval(function() {
 
@@ -227,13 +224,16 @@ startQuizBtnEl.addEventListener("click", function() {
 
         
         if(timeLeft >= 1 && finalAnswerCheck !== 1) {
+            
             questionDisplay.textContent = questionsObject.correct[questionNumber];
             
-            questionDisplay.style.display= ""; 
-            answer1BtnEl.style.display = "";
+            questionDisplay.style.display= "";
+            answer1BtnEl.style.display = ""; 
+            answer2BtnEl.style.display = "";
             answer3BtnEl.style.display = "";
             answer4BtnEl.style.display = "";
 
+           
             answer1BtnEl.textContent = answersObject.answers[answerNumber][0];
             answer2BtnEl.textContent = answersObject.answers[answerNumber][1];
             answer3BtnEl.textContent = answersObject.answers[answerNumber][2];
@@ -251,6 +251,7 @@ startQuizBtnEl.addEventListener("click", function() {
 
                 if (questionDisplay.textContent === "The condition statement if/else is enclosed with the following:" && answer1BtnEl.textContent === "Parentheses") {
                     console.log("Correct");
+                   
                     questionNumber = 2; 
                     answerNumber = 4;
                     answerCorrectWrong.style.display="";
@@ -259,7 +260,7 @@ startQuizBtnEl.addEventListener("click", function() {
                     answerCorrectWrongGrid.appendChild(answerCorrectWrong);
                 } else {
 
-            
+                  
 
                     switch(answer1BtnEl.textContent) {
                         case "Strings":
@@ -279,7 +280,7 @@ startQuizBtnEl.addEventListener("click", function() {
                             answerCorrectWrong.style.borderTop = "solid #800080";
                             
                             score = 1; 
-                            questionNumber = 3;
+                            questionNumber = 3; 
                             answerNumber = 2;
                             break;
                         case "Javascript":
@@ -288,19 +289,19 @@ startQuizBtnEl.addEventListener("click", function() {
                             answerCorrectWrong.textContent = "Wrong!";
                             answerCorrectWrong.style.borderTop = "solid #800080";
                             
-                            score = 1; 
+                            score = 1;
                             questionNumber = 4; 
                             answerNumber = 3;
                         break;
                         case "Commas":
                             console.log("Correct");
-                            
+                           
                             answerCorrectWrong.style.display=""; 
                             answerCorrectWrong.textContent = "Correct!";
                             answerCorrectWrong.style.borderTop = "solid #800080";
                             answerCorrectWrongGrid.appendChild(answerCorrectWrong);
-                            
-                            questionNumber = 0; 
+                          
+                            questionNumber = 0;
                             answerNumber = 0; 
                             console.log("I'm here" + timeInterval);
                             answer1BtnEl.style.display = 'none';
@@ -309,18 +310,17 @@ startQuizBtnEl.addEventListener("click", function() {
                             answer4BtnEl.style.display = 'none';
                             answerCorrectWrong.style.display='none';
                             startQuizBtnEl.style.display = 'none'; 
-            
                             questionDisplay.textContent = "You have finished the quiz!";
                             finalScoreDisplay.style.display = ""; 
                             enterInitials.style.display = ""; 
                             enterInitialsTextArea.style.display="";  
                             finalAnswerCheck = 1; 
                             lastQuestionWrong();
-                            finalScoreDisplay.textContent = "Your final score is: " + highScore; 
+                            finalScoreDisplay.textContent = "Your final score is: " + highScore; // Assign the latest high score.
                             enterInitials.textContent = "Enter initials: "
                             submitScoreEl.style.display = "";
                             submitScoreEl.textContent = "Submit";                   
-                            //Exit the quiz/timer.
+
                             clearInterval(timeInterval);
                             break;
                         
@@ -334,30 +334,31 @@ startQuizBtnEl.addEventListener("click", function() {
 
                 if (questionDisplay.textContent === "Strings must be enclosed with:" && answer2BtnEl.textContent === "Curly brackets") {
                     console.log("Correct");
-    
+                    
                     answerCorrectWrong.style.display=""; 
                     answerCorrectWrong.textContent = "Correct!";
                     answerCorrectWrong.style.borderTop = "solid #800080";
                     answerCorrectWrongGrid.appendChild(answerCorrectWrong);
                     
                     questionNumber = 0; 
-                    answerNumber = 0;
+                    answerNumber = 0; 
                     console.log("I'm here" + timeInterval);
                     answer1BtnEl.style.display = 'none';
                     answer2BtnEl.style.display = 'none';
                     answer3BtnEl.style.display = 'none';
                     answer4BtnEl.style.display = 'none';
-                    answerCorrectWrong.style.display='none'; 
+                    answerCorrectWrong.style.display='none';
                     startQuizBtnEl.style.display = 'none'; 
+                
                     questionDisplay.textContent = "You have finished the quiz!";
                     finalScoreDisplay.style.display = ""; 
                     enterInitials.style.display = ""; 
                     enterInitialsTextArea.style.display="";  
-                    finalScoreDisplay.textContent = "Your final score is: " + highScore;
+                    finalScoreDisplay.textContent = "Your final score is: " + highScore; 
                     enterInitials.textContent = "Enter initials: "
                     submitScoreEl.style.display = "";
                     submitScoreEl.textContent = "Submit";                   
-                    //Exit the quiz/timer.
+                 
                     clearInterval(timeInterval);
                 } else {
 
@@ -369,7 +370,7 @@ startQuizBtnEl.addEventListener("click", function() {
                             answerCorrectWrong.style.borderTop = "solid #800080";
                           
                             score = 1; 
-                            questionNumber = 1; 
+                            questionNumber = 1;
                             answerNumber = 1;
                             break;
                         case "Curly Brackets":
@@ -388,7 +389,7 @@ startQuizBtnEl.addEventListener("click", function() {
                             answerCorrectWrong.style.display="";
                             answerCorrectWrong.textContent = "Wrong!";
                             answerCorrectWrong.style.borderTop = "solid #800080";
-                            score = 1;
+                            score = 1; 
                             questionNumber = 3; 
                             answerNumber = 2;
                             break;
@@ -397,7 +398,7 @@ startQuizBtnEl.addEventListener("click", function() {
                             answerCorrectWrong.style.display="";
                             answerCorrectWrong.textContent = "Wrong!";
                             answerCorrectWrong.style.borderTop = "solid #800080";
-                            score = 1;
+                            score = 1; 
                             questionNumber = 4; 
                             answerNumber = 3;
                             break;
@@ -415,7 +416,7 @@ startQuizBtnEl.addEventListener("click", function() {
 
                 if (questionDisplay.textContent === "Commonly used datatypes DO NOT include?" && answer3BtnEl.textContent === "Alerts") {
                     console.log("Correct");
-                    questionNumber = 1;
+                    questionNumber = 1; 
                     answerNumber = 1;
                     answerCorrectWrong.style.display=""; 
                     answerCorrectWrong.textContent = "Correct!";
@@ -423,8 +424,7 @@ startQuizBtnEl.addEventListener("click", function() {
                     answerCorrectWrongGrid.appendChild(answerCorrectWrong);
                 } else if (questionDisplay.textContent === "A very useful tool to debug arrays is:" && answer3BtnEl.textContent === "For loops") {
                     console.log("Correct");
-                   
-                    questionNumber = 4; 
+                    questionNumber = 4;
                     answerNumber =3;
                     answerCorrectWrong.style.display=""; 
                     answerCorrectWrong.textContent = "Correct!";
@@ -436,7 +436,7 @@ startQuizBtnEl.addEventListener("click", function() {
                             answerCorrectWrong.textContent = "Wrong!";
                             answerCorrectWrong.style.borderTop = "solid #800080";
                             score = 1; 
-                            questionNumber = 2; 
+                            questionNumber = 2;
                             answerNumber = 4;
                 }
                 
@@ -454,85 +454,9 @@ startQuizBtnEl.addEventListener("click", function() {
                             break;
                         case "Quotes":
                             console.log("Inside the case now");
-                            score = 1;
+                            score = 1; 
                             questionNumber = 0; 
-                            answerNumber = 0;
-                            console.log("I'm here" + timeInterval);
-                            answer1BtnEl.style.display = 'none';
-                            answer2BtnEl.style.display = 'none';
-                            answer3BtnEl.style.display = 'none';
-                            answer4BtnEl.style.display = 'none';
-                            answerCorrectWrong.style.display='none';
-                            startQuizBtnEl.style.display = 'none';
-                            //answerCorrectWrong.style.display=""; 
-                            questionDisplay.textContent = "You have finished the quiz!";
-                            finalScoreDisplay.style.display = ""; 
-                            enterInitials.style.display = ""; 
-                            enterInitialsTextArea.style.display=""; 
-                            finalAnswerCheck = 1; 
-                            lastQuestionWrong();
-                            finalScoreDisplay.textContent = "Your final score is: " + highScore; 
-                            enterInitials.textContent = "Enter initials: "
-                            submitScoreEl.style.display = "";
-                            submitScoreEl.textContent = "Submit";                   
-                     
-                            clearInterval(timeInterval);
-                            
-                        break;
-                    }
-
-                }
-
-            });
-
-            answer4BtnEl.addEventListener("click", function() {
-
-                if (questionDisplay.textContent === "Arrays can be used to store the following" && answer4BtnEl.textContent === "All of the above") {
-                    console.log("Correct");
-        
-                    questionNumber = 3; 
-                    answerNumber = 2;
-                    answerCorrectWrong.style.display=""; 
-                    answerCorrectWrong.textContent = "Correct!"
-                    answerCorrectWrong.style.borderTop = "solid #800080";
-                    answerCorrectWrongGrid.appendChild(answerCorrectWrong);
-
-                } else {
-
-                    switch(answer4BtnEl.textContent) {
-                        case "Numbers":
-                            console.log("Inside the case now");
-                            answerCorrectWrong.style.display="";
-                            answerCorrectWrong.textContent = "Wrong!";
-                            answerCorrectWrong.style.borderTop = "solid #800080";
-                            score = 1; 
-                            questionNumber = 1; 
-                            break;
-                        case "Square Brackets":
-                            console.log("Inside the case now");
-                            answerCorrectWrong.style.display="";
-                            answerCorrectWrong.textContent = "Wrong!";
-                            answerCorrectWrong.style.borderTop = "solid #800080";
-                            score = 1; 
-                            questionNumber = 2; 
-                            answerNumber = 4;
-                            break;
-                        case "Console.log":
-                            console.log("Inside the case now");
-                            answerCorrectWrong.style.display="";
-                            answerCorrectWrong.textContent = "Wrong!";
-                            answerCorrectWrong.style.borderTop = "solid #800080";
-                            score = 1; 
-                            questionNumber = 4;
-                            answerNumber = 3;
-                        break;
-                        case "Parentheses":
-                            console.log("Inside the case now");
-                            answerCorrectWrong.style.display="";
-                            answerCorrectWrong.textContent = "Wrong!";
-                            answerCorrectWrong.style.borderTop = "solid #800080";
-                            score = 1; ;
-                            questionNumber = 0; 
+                            answerNumber = 0; 
                             console.log("I'm here" + timeInterval);
                             answer1BtnEl.style.display = 'none';
                             answer2BtnEl.style.display = 'none';
@@ -550,7 +474,81 @@ startQuizBtnEl.addEventListener("click", function() {
                             enterInitials.textContent = "Enter initials: "
                             submitScoreEl.style.display = "";
                             submitScoreEl.textContent = "Submit";                   
-                            //Exit the quiz/timer.
+                            clearInterval(timeInterval);
+                            
+                        break;
+                    }
+
+                }
+
+            });
+
+            answer4BtnEl.addEventListener("click", function() {
+
+                if (questionDisplay.textContent === "Arrays can be used to store the following" && answer4BtnEl.textContent === "All of the above") {
+                    console.log("Correct");
+                    questionNumber = 3; 
+                    answerNumber = 2;
+                    answerCorrectWrong.style.display=""; 
+                    answerCorrectWrong.textContent = "Correct!"
+                    answerCorrectWrong.style.borderTop = "solid #800080";
+                    answerCorrectWrongGrid.appendChild(answerCorrectWrong);
+
+                } else {
+
+                    switch(answer4BtnEl.textContent) {
+                        case "Numbers":
+                            console.log("Inside the case now");
+                            answerCorrectWrong.style.display="";
+                            answerCorrectWrong.textContent = "Wrong!";
+                            answerCorrectWrong.style.borderTop = "solid #800080";
+                            score = 1; 
+                            questionNumber = 1; 
+                            answerNumber = 1;
+                            break;
+                        case "Square Brackets":
+                            console.log("Inside the case now");
+                            answerCorrectWrong.style.display="";
+                            answerCorrectWrong.textContent = "Wrong!";
+                            answerCorrectWrong.style.borderTop = "solid #800080";
+                            score = 1; 
+                            questionNumber = 2; 
+                            answerNumber = 4;
+                            break;
+                        case "Console.log":
+                            console.log("Inside the case now");
+                            answerCorrectWrong.style.display="";
+                            answerCorrectWrong.textContent = "Wrong!";
+                            answerCorrectWrong.style.borderTop = "solid #800080";
+                            score = 1; 
+                            questionNumber = 4; 
+                            answerNumber = 3;
+                        break;
+                        case "Parentheses":
+                            console.log("Inside the case now");
+                            answerCorrectWrong.style.display="";
+                            answerCorrectWrong.textContent = "Wrong!";
+                            answerCorrectWrong.style.borderTop = "solid #800080";
+                            score = 1; 
+                            questionNumber = 0; 
+                            answerNumber = 0; 
+                            console.log("I'm here" + timeInterval);
+                            answer1BtnEl.style.display = 'none';
+                            answer2BtnEl.style.display = 'none';
+                            answer3BtnEl.style.display = 'none';
+                            answer4BtnEl.style.display = 'none';
+                            answerCorrectWrong.style.display='none'; 
+                            startQuizBtnEl.style.display = 'none'; 
+                            questionDisplay.textContent = "You have finished the quiz!";
+                            finalScoreDisplay.style.display = ""; 
+                            enterInitials.style.display = ""; 
+                            enterInitialsTextArea.style.display="";  
+                            finalAnswerCheck = 1; 
+                            lastQuestionWrong();
+                            finalScoreDisplay.textContent = "Your final score is: " + highScore;
+                            enterInitials.textContent = "Enter initials: "
+                            submitScoreEl.style.display = "";
+                            submitScoreEl.textContent = "Submit";                   
                             clearInterval(timeInterval);
                         break;
                         
@@ -564,13 +562,13 @@ startQuizBtnEl.addEventListener("click", function() {
         else if(timeLeft === 0){
 
           console.log("I'm here" + timeInterval);
-          questionNumber = 0; // Reset all questions
-          answerNumber = 0; // Reset all possible answers.
+          questionNumber = 0; 
+          answerNumber = 0; 
           answer1BtnEl.style.display = 'none';
           answer2BtnEl.style.display = 'none';
           answer3BtnEl.style.display = 'none';
           answer4BtnEl.style.display = 'none';
-          answerCorrectWrong.style.display='none'; 
+          answerCorrectWrong.style.display='none';  
           questionDisplay.textContent = "Game Over!. Try again by clicking on \"Click Start Quiz\"";
           startQuizBtnEl.style.display = "";
           clearInterval(timeInterval);
