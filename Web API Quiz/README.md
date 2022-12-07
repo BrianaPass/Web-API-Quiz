@@ -1,1 +1,0 @@
-In this project i created a timed quiz. i used HTML,JavaScript and CSS to make this quiz functional.
