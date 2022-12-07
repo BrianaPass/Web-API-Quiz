@@ -4,12 +4,12 @@
     box-sizing: border-box;
 }
 
-body {
+body {/* Body Header features*/
     font-family: 'Merienda';font-size: 22px;
     background-color: rgb(183, 233, 183);
 }
 
-header {
+header { /* Header features*/
     display: flex; /* Flex container to display the child elements as flex with space between and wrap */
     justify-content: space-between;
     flex-wrap: wrap;
@@ -23,7 +23,7 @@ header {
     font-family: 'Merienda';font-size: 25px;
   }
 
-.btnHeader {
+.btnHeader { /* Button Header features*/
     border-radius: 10px;
     background-color:rgb(183, 233, 183);
     text-decoration: none;
@@ -41,7 +41,7 @@ header {
     
 }
 
-.btn {
+.btn { /* Button features*/
     border-radius: 12px;
     border: 0;
     outline: 0; /* Remove border around button */
